@@ -1,6 +1,9 @@
-package hw2_smale_project.dao;
+package hw2_smale_project.servletOneToMany;
 
+import hw2_smale_project.mapper.ChildMapper;
+import hw2_smale_project.mapper.SectionMapper;
 import hw2_smale_project.mapper.TeacherMapper;
+import hw2_smale_project.model.Section;
 import hw2_smale_project.model.Teacher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -8,22 +11,24 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static hw2_smale_project.DBConstants.*;
+
 public class OneToMany extends HttpServlet {
 
-    private final Connection connection;
-    private final TeacherMapper teacherMapper;
+    private SectionMapper sectionMapper;
 
-    public OneToMany(Connection connection, TeacherMapper teacherMapper) {
-        this.connection = connection;
-        this.teacherMapper = teacherMapper;
 
+    public OneToMany(SectionMapper sectionMapper) throws SQLException {
+        this.sectionMapper = sectionMapper;
+
+    }
+
+    public OneToMany() throws SQLException {
+        this.sectionMapper = new SectionMapper();
     }
 
 
@@ -37,43 +42,38 @@ public class OneToMany extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        List<Teacher> teachers = new ArrayList<>();
 
+        Section section = new Section();
         try {
-            preparedStatement = connection.prepareStatement(
-                    "SELECT teachers.* " +
+            Class.forName(DB_DRIVER);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://"
+                            + DB_HOST
+                            + ":"
+                            + PORT
+                            + "/"
+                            + DB_NAME,
+                    USER,
+                    PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT sections.name " +
                             "FROM teachers " +
                             "JOIN sections ON teachers.section_id = sections.id " +
-                            "WHERE sections.id = ?");
-
-            preparedStatement.setInt(1, 2);
-            resultSet = preparedStatement.executeQuery();
+                            "WHERE teachers.id = 2;");
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                teachers.add(teacherMapper.toTeacher(resultSet));
+                section = sectionMapper.toSectionOfString(resultSet);
+                System.out.println(section);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        } finally {
 
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-            if (preparedStatement != null) {
-                try {
-                    preparedStatement.close();
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            }
         }
-        req.setAttribute("teachers", teachers);
+        req.getRequestDispatcher("index.jsp").forward(req, resp);
 
         super.doGet(req, resp);
 

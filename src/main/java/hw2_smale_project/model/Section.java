@@ -6,6 +6,10 @@ public class Section {
 
     private String name;
 
+    public Section() {
+
+    }
+
     public Section(int id, String name) {
         this.id = id;
         this.name = name;
@@ -25,5 +29,13 @@ public class Section {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Section{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

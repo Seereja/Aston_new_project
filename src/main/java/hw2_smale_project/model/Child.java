@@ -1,10 +1,15 @@
 package hw2_smale_project.model;
+
 public class Child {
     private int id;
     private String name;
     private String surname;
 
     private int age;
+
+    public Child() {
+
+    }
 
     public Child(int id, String name, String surname, int age) {
         this.id = id;
@@ -43,5 +48,15 @@ public class Child {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Child{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", age=" + age +
+                '}';
     }
 }

@@ -1,4 +1,4 @@
-package hw2_smale_project.dao;
+package hw2_smale_project.servletManyToMany;
 
 import hw2_smale_project.mapper.ChildMapper;
 import hw2_smale_project.model.Child;
@@ -12,14 +12,20 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static hw2_smale_project.DBConstants.*;
+
 public class ManyToMany extends HttpServlet {
 
-    private final Connection connection;
-    private final ChildMapper childMapper;
+    private ChildMapper childMapper;
 
-    public ManyToMany(Connection connection, ChildMapper childMapper) {
-        this.connection = connection;
+
+    public ManyToMany(ChildMapper childMapper) throws SQLException {
         this.childMapper = childMapper;
+    }
+
+    public ManyToMany() throws SQLException {
+        this.childMapper = new ChildMapper();
+
     }
 
     @Override
@@ -33,38 +39,46 @@ public class ManyToMany extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         List<Child> child = new ArrayList<>();
-        ResultSet resultSet = null;
-        PreparedStatement preparedStatement = null;
+
         try {
-            preparedStatement =
-                    connection.prepareStatement("SELECT c.name AS child_name, c.surname AS child_surname, s.name AS section_name " +
-                            "FROM children c " +
-                            "JOIN children_section cs ON c.id = cs.children_id " +
-                            "JOIN sections s ON s.id = cs.section_id");
-            resultSet = preparedStatement.executeQuery();
+            Class.forName(DB_DRIVER);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://"
+                            + DB_HOST
+                            + ":"
+                            + PORT
+                            + "/"
+                            + DB_NAME,
+                    USER,
+                    PASSWORD);
+            PreparedStatement preparedStatement =
+                    connection.prepareStatement("SELECT " +
+                            "c.id as id, " +
+                            "c.name AS name, " +
+                            "c.surname AS surname," +
+                            "c.age AS age," +
+                            "s.name AS name " +
+                            "FROM " +
+                            "children AS c " +
+                            "INNER JOIN " +
+                            "children_section AS cs ON c.id = cs.children_id " +
+                            "INNER JOIN " +
+                            "sections AS s ON s.id = 2");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            System.out.println(resultSet);
             while (resultSet.next()) {
                 child = childMapper.toChildList(resultSet);
+                System.out.println(child);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        } finally {
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-            if (preparedStatement != null) {
-                try {
-                    preparedStatement.close();
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            }
+
         }
 
-        req.setAttribute("child", child);
+        req.getRequestDispatcher("index.jsp").forward(req, resp);
         super.doGet(req, resp);
     }
 }

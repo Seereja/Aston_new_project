@@ -1,17 +1,27 @@
 package hw2_smale_project.mapper;
 
+import hw2_smale_project.model.Child;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class childrenMapper {
-    public  toBooking(ResultSet resultSet) throws SQLException {
-        Booking booking = new Booking();
-        booking.setId(resultSet.getLong("id"));
-        booking.setName(resultSet.getString("name"));
-        booking.setSurname(resultSet.getString("surname"));
-        booking.setDeparture_from(resultSet.getString("departure_from"));
-        booking.setArriving_to(resultSet.getString("arriving_to"));
-        booking.setPrice(resultSet.getInt("price"));
-        return booking;
+public class ChildMapper {
+    public Child toChild(ResultSet resultSet) throws SQLException {
+        Child child = new Child();
+        child.setId(resultSet.getInt("id"));
+        child.setName(resultSet.getString("name"));
+        child.setSurname(resultSet.getString("surname"));
+        child.setAge(resultSet.getInt("age"));
+        return child;
+    }
+
+    public List<Child> toChildList(ResultSet resultSet) throws SQLException {
+        List<Child> list = new ArrayList<>();
+        while (resultSet.next()) {
+            list.add(toChild(resultSet));
+        }
+        return list;
     }
 }
