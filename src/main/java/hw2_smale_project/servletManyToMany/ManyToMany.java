@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static hw2_smale_project.DBConstants.*;
 
@@ -38,7 +39,7 @@ public class ManyToMany extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        List<Child> child = new ArrayList<>();
+        List<Child> child = null;
 
         try {
             Class.forName(DB_DRIVER);
@@ -60,19 +61,19 @@ public class ManyToMany extends HttpServlet {
                             "c.name AS name, " +
                             "c.surname AS surname," +
                             "c.age AS age," +
-                            "s.name AS name " +
+                            "s.name AS secname  " +
                             "FROM " +
                             "children AS c " +
                             "INNER JOIN " +
                             "children_section AS cs ON c.id = cs.children_id " +
                             "INNER JOIN " +
-                            "sections AS s ON s.id = 2");
+                            "sections AS s ON cs.section_id = s.id WHERE s.id = 3");
             ResultSet resultSet = preparedStatement.executeQuery();
-            System.out.println(resultSet);
             while (resultSet.next()) {
                 child = childMapper.toChildList(resultSet);
                 System.out.println(child);
             }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
 

@@ -18,9 +18,8 @@ public class SectionMapper {
 
     public Section toSectionOfString(ResultSet resultSet) throws SQLException {
         Section sections = new Section();
-        while (resultSet.next()) {
-            toSection(resultSet);
-        }
+        sections.setId(resultSet.getInt("id"));
+        sections.setName(resultSet.getString("name"));
         return sections;
     }
 }

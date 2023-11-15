@@ -42,8 +42,6 @@ public class OneToMany extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-
-        Section section = new Section();
         try {
             Class.forName(DB_DRIVER);
         } catch (ClassNotFoundException e) {
@@ -59,14 +57,14 @@ public class OneToMany extends HttpServlet {
                     USER,
                     PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT sections.name " +
+                    "SELECT sections.id, sections.name " +
                             "FROM teachers " +
                             "JOIN sections ON teachers.section_id = sections.id " +
-                            "WHERE teachers.id = 2;");
-            ResultSet resultSet = preparedStatement.executeQuery();
+                            "WHERE teachers.id = 1;");
 
+            ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                section = sectionMapper.toSectionOfString(resultSet);
+                Section section = sectionMapper.toSectionOfString(resultSet);
                 System.out.println(section);
             }
         } catch (SQLException e) {
