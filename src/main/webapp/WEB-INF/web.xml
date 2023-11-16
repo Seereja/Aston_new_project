@@ -5,23 +5,23 @@
          version="5.0">
 
     <servlet>
-        <servlet-name>ManyToMany</servlet-name>
-        <servlet-class>hw2_smale_project.servletManyToMany.ManyToMany</servlet-class>
+        <servlet-name>ChildController</servlet-name>
+        <servlet-class>hw2_smale_project.servletManyToMany.ChildController</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>ManyToMany</servlet-name>
+        <servlet-name>ChildController</servlet-name>
         <url-pattern>/child</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>OneToMany</servlet-name>
-        <servlet-class>hw2_smale_project.servletOneToMany.OneToMany</servlet-class>
+        <servlet-name>SectionController</servlet-name>
+        <servlet-class>hw2_smale_project.servletOneToMany.SectionController</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>OneToMany</servlet-name>
-        <url-pattern>/teacher</url-pattern>
+        <servlet-name>SectionController</servlet-name>
+        <url-pattern>/section</url-pattern>
     </servlet-mapping>
 
 </web-app>

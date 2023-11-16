@@ -17,12 +17,12 @@
 <br/>
 <br/>
 
-<a href="child">Many to many</a>
+<a href="child">ChildController</a>
 
 <br/>
 <br/>
 
-<a href="teacher">One to Many</a>
+<a href="section">SectionController</a>
 
 </body>
 </html>
