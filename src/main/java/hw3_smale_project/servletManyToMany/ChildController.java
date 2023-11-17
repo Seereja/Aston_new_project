@@ -1,9 +1,10 @@
-package hw2_smale_project.servletManyToMany;
+package hw3_smale_project.servletManyToMany;
 
-import hw2_smale_project.config.DBConfig;
-import hw2_smale_project.mapper.ChildMapper;
-import hw2_smale_project.model.Child;
-import hw2_smale_project.service.ChildDAOImpl;
+import hw3_smale_project.config.DBConfig;
+import hw3_smale_project.mapper.ChildMapper;
+import hw3_smale_project.model.Child;
+import hw3_smale_project.repository.ChildDAO;
+import hw3_smale_project.service.ChildDAOImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,7 +19,7 @@ public class ChildController extends HttpServlet {
     private final ChildDAOImpl childDAOimpl;
 
     public ChildController() {
-        this.childDAOimpl = new ChildDAOImpl(new DBConfig(), new ChildMapper());
+        this.childDAOimpl = new ChildDAOImpl(new ChildDAO(new DBConfig(), new ChildMapper()));
     }
 
 
@@ -34,13 +35,7 @@ public class ChildController extends HttpServlet {
             throws ServletException, IOException {
 //        int id = Integer.parseInt(req.getParameter("id"));
         List<Child> children = null;
-        try {
-            children = childDAOimpl.getChildrenForSectionId(1);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        children = childDAOimpl.getChildrenForSectionId(1);
         req.setAttribute("child", children);
         req.getRequestDispatcher("index.jsp").forward(req, resp);
         super.doGet(req, resp);

@@ -1,10 +1,8 @@
-package hw2_smale_project.config;
+package hw3_smale_project.config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
-import static hw2_smale_project.DBConstants.*;
 
 public class DBConfig {
     private static final String DB_DRIVER = "org.postgresql.Driver";

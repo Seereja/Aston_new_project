@@ -1,28 +1,27 @@
-package hw2_smale_project.service;
+package hw3_smale_project.repository;
 
-import hw2_smale_project.config.DBConfig;
-import hw2_smale_project.mapper.SectionMapper;
-import hw2_smale_project.model.Section;
-import hw2_smale_project.repository.SectionDAO;
+import hw3_smale_project.config.DBConfig;
+import hw3_smale_project.mapper.SectionMapper;
+import hw3_smale_project.model.Section;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class SectionDAOImpl implements SectionDAO {
+public class SectionDAO {
 
     private final DBConfig dbConfig;
 
     private final SectionMapper sectionMapper;
 
-    public SectionDAOImpl(DBConfig dbConfig, SectionMapper sectionMapper) {
+    public SectionDAO(DBConfig dbConfig, SectionMapper sectionMapper) {
         this.dbConfig = dbConfig;
         this.sectionMapper = sectionMapper;
     }
 
-    @Override
-    public Section findSectionByTeacherId(int id) {
+    public Section findSectionByTeacherId(int id) throws SQLException, ClassNotFoundException {
+
         Section section = new Section();
         try (Connection connection = DBConfig.connection()) {
             //получаем коннекшн
@@ -37,7 +36,6 @@ public class SectionDAOImpl implements SectionDAO {
             //достаем из резултсет
             while (resultSet.next()) {
                 section = sectionMapper.toSectionOfString(resultSet);
-                System.out.println(section);
             }
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
@@ -45,3 +43,4 @@ public class SectionDAOImpl implements SectionDAO {
         return section;
     }
 }
+

@@ -1,7 +1,6 @@
-package hw2_smale_project.mapper;
+package hw3_smale_project.mapper;
 
-import hw2_smale_project.model.Section;
-import hw2_smale_project.model.Teacher;
+import hw3_smale_project.model.Teacher;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

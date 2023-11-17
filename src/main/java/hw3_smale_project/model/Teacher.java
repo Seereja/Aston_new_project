@@ -1,18 +1,18 @@
-package hw2_smale_project.model;
+package hw3_smale_project.model;
 
-public class Section {
-
+public class Teacher {
     private int id;
-
     private String name;
+    private String surname;
 
-    public Section() {
+    public Teacher() {
 
     }
 
-    public Section(int id, String name) {
+    public Teacher(int id, String name, String surname) {
         this.id = id;
         this.name = name;
+        this.surname = surname;
     }
 
     public int getId() {
@@ -31,11 +31,20 @@ public class Section {
         this.name = name;
     }
 
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
     @Override
     public String toString() {
-        return "Section{" +
+        return "Teacher{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
                 '}';
     }
 }

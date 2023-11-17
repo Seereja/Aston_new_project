@@ -1,4 +1,4 @@
-package hw2_smale_project.model;
+package hw3_smale_project.model;
 
 public class Child {
     private int id;

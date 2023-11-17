@@ -1,9 +1,12 @@
-package hw2_smale_project.servletOneToMany;
+package hw3_smale_project.servletOneToMany;
 
-import hw2_smale_project.config.DBConfig;
-import hw2_smale_project.mapper.SectionMapper;
-import hw2_smale_project.model.Section;
-import hw2_smale_project.service.SectionDAOImpl;
+import hw3_smale_project.config.DBConfig;
+import hw3_smale_project.mapper.ChildMapper;
+import hw3_smale_project.mapper.SectionMapper;
+import hw3_smale_project.model.Section;
+import hw3_smale_project.repository.ChildDAO;
+import hw3_smale_project.repository.SectionDAO;
+import hw3_smale_project.service.SectionDAOImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,7 +19,7 @@ public class SectionController extends HttpServlet {
     private final SectionDAOImpl sectionDAOImpl;
 
     public SectionController() {
-        this.sectionDAOImpl = new SectionDAOImpl(new DBConfig(), new SectionMapper());
+        this.sectionDAOImpl = new SectionDAOImpl(new SectionDAO(new DBConfig(), new SectionMapper()));
     }
 
 

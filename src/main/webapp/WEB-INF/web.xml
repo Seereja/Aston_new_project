@@ -6,7 +6,7 @@
 
     <servlet>
         <servlet-name>ChildController</servlet-name>
-        <servlet-class>hw2_smale_project.servletManyToMany.ChildController</servlet-class>
+        <servlet-class>hw3_smale_project.servletManyToMany.ChildController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -16,7 +16,7 @@
 
     <servlet>
         <servlet-name>SectionController</servlet-name>
-        <servlet-class>hw2_smale_project.servletOneToMany.SectionController</servlet-class>
+        <servlet-class>hw3_smale_project.servletOneToMany.SectionController</servlet-class>
     </servlet>
 
     <servlet-mapping>

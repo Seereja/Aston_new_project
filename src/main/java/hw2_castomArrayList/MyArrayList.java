@@ -1,4 +1,4 @@
-package hw1_castomArrayList;
+package hw2_castomArrayList;
 
 import java.util.Arrays;
 import java.util.Comparator;
