@@ -69,7 +69,9 @@ public class Section extends GenericModel {
     @Override
     public String toString() {
         return "Section{" +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
+                ", children=" + children +
+                ", teachers=" + teachers +
                 '}';
     }
 }

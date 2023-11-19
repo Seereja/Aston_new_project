@@ -5,12 +5,12 @@
          version="5.0">
 
     <servlet>
-        <servlet-name>ChildController</servlet-name>
-        <servlet-class>hw3_smale_project.servletManyToMany.ChildController</servlet-class>
+        <servlet-name>ChildServlet</servlet-name>
+        <servlet-class>hw4_smale_project.servletManyToMany.ChildServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>ChildController</servlet-name>
+        <servlet-name>ChildServlet</servlet-name>
         <url-pattern>/child</url-pattern>
     </servlet-mapping>
 

@@ -10,6 +10,9 @@ public class Teacher extends User {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "section_id")
     private Section section;
+    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public int getCategory() {
         return category;
@@ -17,5 +20,14 @@ public class Teacher extends User {
 
     public void setCategory(int category) {
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "category=" + category +
+                ", section=" + section +
+                ", user=" + user +
+                '}';
     }
 }

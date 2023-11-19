@@ -20,10 +20,7 @@ public class User extends GenericModel {
     private int phone;
     @Column(name = "age")
     private int age;
-    @OneToMany(cascade = CascadeType.ALL,
-            mappedBy = "user",
-            fetch = FetchType.LAZY)
-    private List<Role> roles;
+
 
     public User(String name, String surname, String email, int phone, int age) {
         this.name = name;
@@ -35,14 +32,6 @@ public class User extends GenericModel {
 
     public User() {
 
-    }
-
-    public List<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
     }
 
     public String getName() {
@@ -84,6 +73,8 @@ public class User extends GenericModel {
     public void setAge(int age) {
         this.age = age;
     }
+
+
 
     @Override
     public String toString() {

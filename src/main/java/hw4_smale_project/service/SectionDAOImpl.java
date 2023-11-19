@@ -15,15 +15,15 @@ public class SectionDAOImpl {
     }
 
 
-    public Section findSectionByTeacherId(int id) {
-        Section section = new Section();
-
-        try {
-            section = sectionDAO.findSectionByTeacherId(id);
-        } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        System.out.println(section);
-        return section;
-    }
+//    public Section findSectionByTeacherId(int id) {
+//        Section section = new Section();
+//
+//        try {
+//            section = sectionDAO.findSectionByTeacherId(id);
+//        } catch (SQLException | ClassNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
+//        System.out.println(section);
+//        return section;
+//    }
 }

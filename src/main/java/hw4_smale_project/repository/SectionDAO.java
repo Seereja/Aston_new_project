@@ -20,27 +20,27 @@ public class SectionDAO {
         this.sectionMapper = sectionMapper;
     }
 
-    public Section findSectionByTeacherId(int id) throws SQLException, ClassNotFoundException {
-
-        Section section = new Section();
-        try (Connection connection = DBConfig.connection()) {
-            //получаем коннекшн
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT sections.id, sections.name " +
-                            "FROM teachers " +
-                            "JOIN sections ON teachers.section_id = sections.id " +
-                            "WHERE teachers.id = ?;");
-            preparedStatement.setInt(1, id);
-            //получаем ресултсет
-            ResultSet resultSet = preparedStatement.executeQuery();
-            //достаем из резултсет
-            while (resultSet.next()) {
-                section = sectionMapper.toSectionOfString(resultSet);
-            }
-        } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        return section;
-    }
+//    public Section findSectionByTeacherId(int id) throws SQLException, ClassNotFoundException {
+//
+//        Section section = new Section();
+//        try (Connection connection = DBConfig.connection()) {
+//            //получаем коннекшн
+//            PreparedStatement preparedStatement = connection.prepareStatement(
+//                    "SELECT sections.id, sections.name " +
+//                            "FROM teachers " +
+//                            "JOIN sections ON teachers.section_id = sections.id " +
+//                            "WHERE teachers.id = ?;");
+//            preparedStatement.setInt(1, id);
+//            //получаем ресултсет
+//            ResultSet resultSet = preparedStatement.executeQuery();
+//            //достаем из резултсет
+//            while (resultSet.next()) {
+//                section = sectionMapper.toSectionOfString(resultSet);
+//            }
+//        } catch (SQLException | ClassNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
+//        return section;
+//    }
 }
 

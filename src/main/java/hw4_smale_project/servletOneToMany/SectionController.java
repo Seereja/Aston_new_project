@@ -28,16 +28,16 @@ public class SectionController extends HttpServlet {
         super.doPost(req, resp);
     }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-        Section section = sectionDAOImpl.findSectionByTeacherId(2);
-        req.setAttribute("section", section);
-        req.getRequestDispatcher("index.jsp").forward(req, resp);
-
-        super.doGet(req, resp);
-
-
-    }
+//    @Override
+//    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+//            throws ServletException, IOException {
+//        Section section = sectionDAOImpl.findSectionByTeacherId(2);
+//        req.setAttribute("section", section);
+//        req.getRequestDispatcher("index.jsp").forward(req, resp);
+//
+//        super.doGet(req, resp);
+//
+//
+//    }
 }
 
