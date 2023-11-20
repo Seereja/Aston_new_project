@@ -21,6 +21,7 @@ public class Test2 {
             Section section = new Section("VB");
             session.persist(section);
             Teacher teacher = new Teacher();
+            
             User user = new User();
 
 

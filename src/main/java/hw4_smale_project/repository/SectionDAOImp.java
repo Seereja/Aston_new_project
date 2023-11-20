@@ -15,9 +15,6 @@ import java.util.List;
 
 public class SectionDAOImp implements SectionDAO {
 
-
-    SessionFactory sessionFactory;
-
     @Transactional
     @Override
     public Section findSectionByTeacherId(int id) {

@@ -47,6 +47,7 @@ public class ChildServiceImpl implements ChildService {
         List<Child> children = null;
         try {
             children = childDAOImp.getChildrenForSectionId(id);
+            children.stream().map(Child::getName).forEach(System.out::println);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }

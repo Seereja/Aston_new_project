@@ -4,6 +4,7 @@ import hw4_smale_project.config.DBConfig;
 import hw4_smale_project.model.Child;
 import hw4_smale_project.model.Section;
 import hw4_smale_project.model.User;
+import hw4_smale_project.service.UserServiceImpl;
 import jakarta.transaction.Transactional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -26,10 +27,12 @@ public class Test {
             User user = new User("Р", "фыв", "фыввф", 81929192, 12);
             session.persist(user);
             Child child = new Child("Junior", user);
+
             List<Child> children = new ArrayList<>();
             children.add(child);
             section.setChildren(children);
             session.persist(child);
+
         }
     }
 }
