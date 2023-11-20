@@ -2,26 +2,35 @@ package hw4_smale_project.model;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "sections")
 public class Section extends GenericModel {
 
-    @Column(name = "name")
-    private String name;
-    @ManyToMany(mappedBy = "sections")
-    private List<Child> children;
+    @Column(name = "section_name")
+    private String sectionName;
 
+    @ManyToMany(mappedBy = "sections")
+    private Set<Child> children = new HashSet<>();
     @OneToMany(mappedBy = "section")
     private List<Teacher> teachers;
 
-    public List<Child> getChildren() {
+
+    public Section(String sectionName, Set<Child> children, List<Teacher> teachers) {
+        this.sectionName = sectionName;
+        this.children = children;
+        this.teachers = teachers;
+    }
+
+
+    public Set<Child> getChildren() {
         return children;
     }
 
-    public void setChildren(List<Child> children) {
+    public void setChildren(Set<Child> children) {
         this.children = children;
     }
 
@@ -39,22 +48,22 @@ public class Section extends GenericModel {
 
     public Section(String name) {
 
-        this.name = name;
+        this.sectionName = name;
     }
 
 
     public String getName() {
-        return name;
+        return sectionName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.sectionName = name;
     }
 
     @Override
     public String toString() {
         return "Section{" +
-                "name='" + name + '\'' +
+                "name='" + sectionName + '\'' +
                 ", children=" + children +
                 ", teachers=" + teachers +
                 '}';

@@ -4,27 +4,22 @@ import hw4_smale_project.config.DBConfig;
 import hw4_smale_project.model.Section;
 import hw4_smale_project.model.Teacher;
 import hw4_smale_project.model.User;
-import hw4_smale_project.service.UserServiceImpl;
+import hw4_smale_project.service.*;
 import org.hibernate.Session;
 
-public class Test2 {
-    private final UserServiceImpl userService;
+import java.sql.SQLException;
 
-    public Test2(UserServiceImpl userService) {
-        this.userService = userService;
-    }
+public class Test2 {
 
     public static void main(String[] args) {
-
         try (Session session = DBConfig.getSessionFactory().openSession()) {
             session.beginTransaction();
-            Section section = new Section("VB");
-            session.persist(section);
-            Teacher teacher = new Teacher();
-            
-            User user = new User();
+            UserServiceImpl userService1 = new UserServiceImpl();
+            ChildServiceImpl childService = new ChildServiceImpl();
+            TeacherServiceImpl teacherService = new TeacherServiceImpl();
+            SectionServiceImpl sectionService = new SectionServiceImpl();
 
-
+            System.out.println(childService.getChildrenBySectionId(2));
         }
     }
 }

@@ -2,44 +2,41 @@ package hw4_smale_project.model;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "children")
 public class Child extends User {
     @Column(name = "categoryInSports")
     private String categoryInSports;
-    @ManyToMany(cascade = {
-            CascadeType.DETACH,
-            CascadeType.MERGE,
-            CascadeType.PERSIST,
-            CascadeType.REFRESH})
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {
+            CascadeType.MERGE,})
     @JoinTable(name = "children_section",
             joinColumns = @JoinColumn(name = "child_id"),
-            inverseJoinColumns = @JoinColumn(name = "section_id"))
-    private List<Section> sections;
+            foreignKey = @ForeignKey(name = "FK_CHILDREN_SECTIONS"),
+            inverseJoinColumns = @JoinColumn(name = "section_id"),
+            inverseForeignKey = @ForeignKey(name = "FK_SECTIONS_CHILDREN"))
+    private Set<Section> sections;
 
 
     public Child() {
 
     }
 
-    public Child(String name, String surname, String email, int phone, int age, String categoryInSports, List<Section> sections, User user) {
-//        super(name, surname, email, phone, age);
+    public Child(String name, String surname, String email, int phone, int age, String categoryInSports, Set<Section> sections, User user) {
         this.categoryInSports = categoryInSports;
         this.sections = sections;
-//        this.user = user;
     }
 
     public Child(String categoryInSports, User user) {
         this.categoryInSports = categoryInSports;
-//        this.user = user;
     }
 
-    public Child(String categoryInSports, List<Section> sections, User user) {
+    public Child(String categoryInSports, Set<Section> sections, User user) {
         this.categoryInSports = categoryInSports;
         this.sections = sections;
-//        this.user = user;
     }
 
     public String getCategoryInSports() {
@@ -55,7 +52,6 @@ public class Child extends User {
         return "Child{" +
                 "categoryInSports='" + categoryInSports + '\'' +
                 ", sections=" + sections +
-//                ", user=" + user +
                 '}';
     }
 }

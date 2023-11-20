@@ -11,16 +11,7 @@ public class Teacher extends User {
     @JoinColumn(name = "section_id")
     private Section section;
 
-//    public Teacher(String name, String surname, String email, int phone, int age, String category, Section section) {
-//        super(name, surname, email, phone, age);
-//        this.category = category;
-//        this.section = section;
-//    }
 
-//    public Teacher(String category, Section section) {
-//        this.category = category;
-//        this.section = section;
-//    }
 
     public Teacher() {
 

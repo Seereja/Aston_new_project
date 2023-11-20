@@ -1,6 +1,7 @@
 package hw4_smale_project.repository;
 
 
+import hw4_smale_project.DTO.ChildSectionDTO;
 import hw4_smale_project.model.Child;
 
 import java.sql.SQLException;
@@ -16,7 +17,7 @@ public interface ChildDAO {
 
     void deleteChildren(int id);
 
-    List<Child> getChildrenForSectionId(int id) throws ClassNotFoundException;
+    List<ChildSectionDTO> getChildrenBySectionId(int id) throws ClassNotFoundException;
 
     public void addChildrenToSection(Child child);
 }

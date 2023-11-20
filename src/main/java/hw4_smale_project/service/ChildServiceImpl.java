@@ -1,18 +1,25 @@
 package hw4_smale_project.service;
 
+import hw4_smale_project.DTO.ChildSectionDTO;
 import hw4_smale_project.model.Child;
-import hw4_smale_project.repository.ChildDAO;
 import hw4_smale_project.repository.ChildDAOImp;
 import jakarta.transaction.Transactional;
+import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.List;
 
+@Service
 public class ChildServiceImpl implements ChildService {
     private final ChildDAOImp childDAOImp;
 
     public ChildServiceImpl(ChildDAOImp childDAOImp) {
         this.childDAOImp = childDAOImp;
+
+    }
+
+    public ChildServiceImpl() {
+        this.childDAOImp = new ChildDAOImp();
 
     }
 
@@ -43,16 +50,12 @@ public class ChildServiceImpl implements ChildService {
 
     @Override
     @Transactional
-    public List<Child> getChildrenForSectionId(int id) {
-        List<Child> children = null;
-        try {
-            children = childDAOImp.getChildrenForSectionId(id);
-            children.stream().map(Child::getName).forEach(System.out::println);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        children.stream().map(Child::getName).forEach(System.out::println);
+    public List<ChildSectionDTO> getChildrenBySectionId(int id) {
+        List<ChildSectionDTO> children;
+        children = childDAOImp.getChildrenBySectionId(id);
+        children.stream().map(ChildSectionDTO::getName).forEach(System.out::println);
         return children;
     }
+
 }
 

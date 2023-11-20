@@ -1,15 +1,15 @@
-create table children_sections
-(
-    child_id   integer not null
-        references children
-        constraint child_section_FK
-            references children,
-    section_id integer not null
-        references sections
-        constraint section_child_FK
-            references sections,
-    primary key (child_id, section_id)
-);
+-- create table children_sections
+-- (
+--     child_id   integer not null
+--         references children
+--         constraint child_section_FK
+--             references children,
+--     section_id integer not null
+--         references sections
+--         constraint section_child_FK
+--             references sections,
+--     primary key (child_id, section_id)
+-- );
 --
 -- alter table users_roles
 --     owner to postgres;
@@ -31,8 +31,7 @@ VALUES (3, 'Имя3', 'Фамилия3', 'email3@example.com', 1234567892, 7),
        (15, 'Имя15', 'Фамилия15', 'email15@example.com', 1234567814, 39);
 
 INSERT INTO children (id, categoryinsports)
-VALUES
-       (10, 'Senior'),
+VALUES (10, 'Senior'),
        (3, 'Junior'),
        (4, 'Senior'),
        (5, 'Junior'),
@@ -40,22 +39,25 @@ VALUES
        (7, 'Junior'),
        (8, 'Senior');
 
-INSERT INTO teachers (id, category,section_id)
-VALUES (1, 'Junior', 1),
-       (2, 'Senior', 2),
-       (3, 'Junior', 3),
-       (4, 'Senior', 3);
+INSERT INTO teachers (id, category, section_id)
+VALUES (10,'Junior', 1),
+       (11,'Senior', 2),
+       (12,'Junior', 3),
+       (13,'Senior', 3);
 
-insert into sections(id, name)
+insert into sections(id,section_name )
 values (1, 'FB'),
        (2, 'BB'),
        (3, 'GB'),
        (4, 'CH');
+insert into sections(id, section_name)
+values (5, 'GB'),
+       (6, 'VB'),
+       (7, 'CCH'),
+       (8, 'TT');
 
 insert into children_section(child_id, section_id)
-values (1, 2),
-       (2, 2),
-       (3, 1),
+values (3, 1),
        (4, 2),
        (5, 1),
        (6, 2),

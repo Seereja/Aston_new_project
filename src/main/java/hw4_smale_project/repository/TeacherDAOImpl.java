@@ -6,10 +6,11 @@ import hw4_smale_project.model.Teacher;
 import hw4_smale_project.model.User;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
 import java.util.List;
-
+@Repository
 public class TeacherDAOImpl implements TeacherDAO {
     @Override
     public List<Teacher> getAllTeacher() throws SQLException {

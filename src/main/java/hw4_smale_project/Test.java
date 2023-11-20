@@ -13,12 +13,10 @@ import org.hibernate.cfg.Configuration;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 public class Test {
-    @Transactional
+
     public static void main(String[] args) throws IOException {
 
         try (Session session = DBConfig.getSessionFactory().openSession()) {
@@ -28,7 +26,7 @@ public class Test {
             session.persist(user);
             Child child = new Child("Junior", user);
 
-            List<Child> children = new ArrayList<>();
+            Set<Child> children = new HashSet<>();
             children.add(child);
             section.setChildren(children);
             session.persist(child);

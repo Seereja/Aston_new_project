@@ -1,9 +1,5 @@
 package hw4_smale_project.servletOneToMany;
 
-import hw4_smale_project.config.DBConfig;
-import hw4_smale_project.mapper.SectionMapper;
-import hw4_smale_project.repository.SectionDAOImp;
-import hw4_smale_project.service.SectionDAOImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;

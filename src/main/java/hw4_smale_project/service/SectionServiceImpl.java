@@ -1,19 +1,26 @@
 package hw4_smale_project.service;
 
+import hw4_smale_project.model.Child;
 import hw4_smale_project.model.Section;
 import hw4_smale_project.repository.SectionDAOImp;
 import jakarta.transaction.Transactional;
+import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.List;
+@Service
 
-public class SectionDAOImpl implements SectionService {
+public class SectionServiceImpl implements SectionService {
 
     private final SectionDAOImp sectionDAOImp;
 
 
-    public SectionDAOImpl(SectionDAOImp sectionDAO) {
+    public SectionServiceImpl(SectionDAOImp sectionDAO) {
         this.sectionDAOImp = sectionDAO;
+    }
+
+    public SectionServiceImpl() {
+        this.sectionDAOImp = new SectionDAOImp();
     }
 
     @Override
@@ -48,6 +55,11 @@ public class SectionDAOImpl implements SectionService {
 
     public void deleteSectionById(int id) {
         sectionDAOImp.deleteSectionById(id);
+    }
+
+    @Override
+    public void saveChildInSection(Child child) {
+        sectionDAOImp.saveChildInSection(child);
     }
 
 }

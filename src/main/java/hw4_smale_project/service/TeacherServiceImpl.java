@@ -4,9 +4,11 @@ import hw4_smale_project.model.Teacher;
 import hw4_smale_project.model.User;
 import hw4_smale_project.repository.TeacherDAOImpl;
 import jakarta.transaction.Transactional;
+import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.List;
+@Service
 
 public class TeacherServiceImpl implements TeacherService {
 
@@ -16,30 +18,32 @@ public class TeacherServiceImpl implements TeacherService {
         this.teacherDAOImpl = teacherDAOImpl;
     }
 
-    @Override
-    @Transactional
-
-    public List<Teacher> getAllTeacher() throws SQLException {
-        return teacherDAOImpl.getAllTeacher();
+    public TeacherServiceImpl() {
+        this.teacherDAOImpl = new TeacherDAOImpl();
     }
 
     @Override
     @Transactional
+    public List<Teacher> getAllTeacher() throws SQLException {
+        List<Teacher> teachers = teacherDAOImpl.getAllTeacher();
+        teachers.stream().forEach(System.out::println);
+        return teachers;
+    }
 
+    @Override
+    @Transactional
     public void saveTeacher(Teacher teacher) {
         teacherDAOImpl.saveTeacher(teacher);
     }
 
     @Override
     @Transactional
-
     public User getTeacher(int id) {
         return teacherDAOImpl.getTeacher(id);
     }
 
     @Override
     @Transactional
-
     public void deleteTeacherById(int id) {
         teacherDAOImpl.deleteTeacherById(id);
     }

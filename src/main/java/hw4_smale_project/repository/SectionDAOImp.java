@@ -9,13 +9,13 @@ import jakarta.transaction.Transactional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
 import java.util.List;
-
+@Repository
 public class SectionDAOImp implements SectionDAO {
 
-    @Transactional
     @Override
     public Section findSectionByTeacherId(int id) {
         Section resultSection = null;
@@ -53,6 +53,12 @@ public class SectionDAOImp implements SectionDAO {
         Query<Section> sectionQuery = session.createQuery("delete from Section where id=:id");
         sectionQuery.setParameter("id", id);
         sectionQuery.executeUpdate();
+    }
+
+    @Override
+    public void saveChildInSection(Child child) {
+        Session session = DBConfig.getSessionFactory().openSession();
+        session.persist(child);
     }
 
 }

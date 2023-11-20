@@ -17,4 +17,6 @@ public interface SectionDAO {
     Section getSectionById(int id);
 
     void deleteSectionById(int id);
+
+    void saveChildInSection(Child child);
 }

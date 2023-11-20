@@ -31,7 +31,7 @@ public class DBConfig {
             settings.put(Environment.USER, "postgres");
             settings.put(Environment.PASS, "1234");
             settings.put(Environment.SHOW_SQL, "true");
-            settings.put(Environment.HBM2DDL_AUTO, "create");
+            settings.put(Environment.HBM2DDL_AUTO, "update");
             configuration.setProperties(settings);
 
 
