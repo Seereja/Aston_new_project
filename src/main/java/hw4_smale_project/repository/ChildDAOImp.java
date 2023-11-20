@@ -17,10 +17,6 @@ import java.util.List;
 
 public class ChildDAOImp implements ChildDAO {
 
-
-    private SessionFactory sessionFactory;
-
-
     @Override
     @Transactional
     public List<Child> getAllChildren() throws SQLException {

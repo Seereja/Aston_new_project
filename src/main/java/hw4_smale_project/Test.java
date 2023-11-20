@@ -12,6 +12,7 @@ import org.hibernate.cfg.Configuration;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -23,7 +24,11 @@ public class Test {
             session.beginTransaction();
             Section section = new Section("VB");
             User user = new User("Р", "фыв", "фыввф", 81929192, 12);
+            session.persist(user);
             Child child = new Child("Junior", user);
+            List<Child> children = new ArrayList<>();
+            children.add(child);
+            section.setChildren(children);
             session.persist(child);
         }
     }

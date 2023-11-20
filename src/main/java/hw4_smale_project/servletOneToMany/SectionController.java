@@ -2,8 +2,7 @@ package hw4_smale_project.servletOneToMany;
 
 import hw4_smale_project.config.DBConfig;
 import hw4_smale_project.mapper.SectionMapper;
-import hw4_smale_project.model.Section;
-import hw4_smale_project.repository.SectionDAO;
+import hw4_smale_project.repository.SectionDAOImp;
 import hw4_smale_project.service.SectionDAOImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -14,11 +13,11 @@ import java.io.IOException;
 
 public class SectionController extends HttpServlet {
 
-    private final SectionDAOImpl sectionDAOImpl;
-
-    public SectionController() {
-        this.sectionDAOImpl = new SectionDAOImpl(new SectionDAO(new DBConfig(), new SectionMapper()));
-    }
+//    private final SectionDAOImpl sectionDAOImpl;
+//
+//    public SectionController() {
+//        this.sectionDAOImpl = new SectionDAOImpl(new SectionDAOImp(new DBConfig(), new SectionMapper()));
+//    }
 
 
     @Override

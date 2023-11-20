@@ -11,25 +11,10 @@ public class Section extends GenericModel {
 
     @Column(name = "name")
     private String name;
-    @ManyToMany(cascade = {
-            CascadeType.DETACH,
-            CascadeType.MERGE,
-            CascadeType.PERSIST,
-            CascadeType.REFRESH})
-    @JoinTable(name = "children_section",
-            //связь с таблицей section
-            joinColumns = @JoinColumn(name = "section_id"),
-            //связь с таблицей child
-            inverseJoinColumns = @JoinColumn(name = "child_id"))
+    @ManyToMany(mappedBy = "sections")
     private List<Child> children;
 
-    @OneToMany(cascade = {
-            CascadeType.DETACH,
-            CascadeType.MERGE,
-            CascadeType.PERSIST,
-            CascadeType.REFRESH},
-            mappedBy = "section",
-            fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "section")
     private List<Teacher> teachers;
 
     public List<Child> getChildren() {

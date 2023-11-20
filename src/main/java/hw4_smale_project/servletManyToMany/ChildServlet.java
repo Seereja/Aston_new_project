@@ -23,21 +23,6 @@ public class ChildServlet extends HttpServlet {
 //    private final DBConfig dbConfig;
     private SessionFactory factory;
 
-//    public ChildServlet(DBConfig dbConfig) {
-//        this.dbConfig = dbConfig;
-//        this.childDAOimpl = new ChildServiceImpl(new ChildDAOImp(new DBConfig(), new ChildMapper()));
-//    }
-
-
-//    @Override
-//    public void init() throws ServletException {
-//        // создаем hibernate конфигурацию
-//        Configuration cfg = new Configuration();
-//        cfg.configure();
-//
-//        factory = cfg.buildSessionFactory();
-//    }
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {

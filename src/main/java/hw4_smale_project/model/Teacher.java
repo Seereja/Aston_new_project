@@ -6,20 +6,29 @@ import jakarta.persistence.*;
 @Table(name = "teachers")
 public class Teacher extends User {
     @Column(name = "category")
-    private int category;
-    @ManyToOne(cascade = CascadeType.ALL)
+    private String category;
+    @ManyToOne
     @JoinColumn(name = "section_id")
     private Section section;
-    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
-    @JoinColumn(name = "user_id")
-    private User user;
 
-    public int getCategory() {
-        return category;
+//    public Teacher(String name, String surname, String email, int phone, int age, String category, Section section) {
+//        super(name, surname, email, phone, age);
+//        this.category = category;
+//        this.section = section;
+//    }
+
+//    public Teacher(String category, Section section) {
+//        this.category = category;
+//        this.section = section;
+//    }
+
+    public Teacher() {
+
     }
 
-    public void setCategory(int category) {
+    public Teacher(String category, Section section) {
         this.category = category;
+        this.section = section;
     }
 
     @Override
@@ -27,7 +36,7 @@ public class Teacher extends User {
         return "Teacher{" +
                 "category=" + category +
                 ", section=" + section +
-                ", user=" + user +
+//                ", user=" + user +
                 '}';
     }
 }

@@ -2,8 +2,6 @@ package hw4_smale_project.model;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
-
 @MappedSuperclass
 public abstract class GenericModel {
     @Id
@@ -11,6 +9,11 @@ public abstract class GenericModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    public Long getId() {
+        return id;
+    }
 
-
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

@@ -1,17 +1,43 @@
 package hw4_smale_project.service;
 
 import hw4_smale_project.model.Section;
-import hw4_smale_project.repository.SectionDAO;
+import hw4_smale_project.repository.SectionDAOImp;
 
 import java.sql.SQLException;
+import java.util.List;
 
-public class SectionDAOImpl {
+public class SectionDAOImpl implements SectionService {
 
-    private final SectionDAO sectionDAO;
+    private final SectionDAOImp sectionDAOImp;
 
 
-    public SectionDAOImpl(SectionDAO sectionDAO) {
-        this.sectionDAO = sectionDAO;
+    public SectionDAOImpl(SectionDAOImp sectionDAO) {
+        this.sectionDAOImp = sectionDAO;
+    }
+
+    @Override
+    public Section findSectionByTeacherId(int id) {
+        return sectionDAOImp.findSectionByTeacherId(id);
+    }
+
+    @Override
+    public List<Section> getAllSection() throws SQLException {
+        return sectionDAOImp.getAllSection();
+    }
+
+    @Override
+    public void saveSection(Section section) {
+        sectionDAOImp.saveSection(section);
+    }
+
+    @Override
+    public Section getSectionById(int id) {
+        return sectionDAOImp.getSectionById(id);
+    }
+
+    @Override
+    public void deleteSectionById(int id) {
+        sectionDAOImp.deleteSectionById(id);
     }
 
 
