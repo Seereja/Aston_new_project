@@ -19,11 +19,11 @@ public class Teacher extends User {
     @JoinColumn(name = "section_id")
     private Section section;
 
-    @Override
-    public String toString() {
-        return "Teacher{" +
-                "category=" + category +
-                ", section=" + section +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Teacher{" +
+//                "category=" + category +
+//                ", section=" + section +
+//                '}';
+//    }
 }

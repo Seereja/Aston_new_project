@@ -1,10 +1,7 @@
 package hw4_smale_project.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.List;
@@ -28,12 +25,4 @@ public class Child extends User {
             inverseForeignKey = @ForeignKey(name = "FK_SECTIONS_CHILDREN"))
     private Set<Section> sections;
 
-
-    @Override
-    public String toString() {
-        return "Child{" +
-                "categoryInSports='" + categoryInSports + '\'' +
-                ", sections=" + sections +
-                '}';
-    }
 }

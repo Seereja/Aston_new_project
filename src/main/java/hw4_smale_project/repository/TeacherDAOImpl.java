@@ -1,5 +1,6 @@
 package hw4_smale_project.repository;
 
+import hw4_smale_project.DTO.TeacherDTO;
 import hw4_smale_project.config.DBConfig;
 import hw4_smale_project.model.Teacher;
 import hw4_smale_project.model.User;
@@ -7,22 +8,38 @@ import hw4_smale_project.repository.repositoryAbstract.TeacherDAO;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class TeacherDAOImpl implements TeacherDAO {
+
+    private final TeacherDTO teacherDTO;
+
+    public TeacherDAOImpl(TeacherDTO teacherDTO) {
+        this.teacherDTO = teacherDTO;
+    }
+
+    public TeacherDAOImpl() {
+        this.teacherDTO = new TeacherDTO();
+    }
+
     @Override
-    public List<Teacher> getAllTeacher() throws SQLException {
-        Session session = DBConfig.getSessionFactory().openSession();
+    public List<TeacherDTO> getAllTeacher() throws SQLException {
         Transaction transaction = null;
-        transaction = session.beginTransaction();
-        List<Teacher> teachers = session.createQuery("from Teacher", Teacher.class).getResultList();
-        transaction.commit();
-        session.close();
-        return teachers;
+        List<TeacherDTO> teacherDTOS = new ArrayList<>();
+        try (Session session = DBConfig.getSessionFactory().openSession();) {
+            transaction = session.beginTransaction();
+            String hql = "SELECT new hw4_smale_project.DTO.TeacherDTO(t.id,t.name,t.surname,t.category) FROM Teacher AS t";
+            List<TeacherDTO> teachers = session.createQuery(hql, TeacherDTO.class).getResultList();
+            teacherDTOS.addAll(teachers);
+            transaction.commit();
+            session.close();
+            return teacherDTOS;
+        }
+
     }
 
     @Override

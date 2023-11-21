@@ -1,5 +1,6 @@
 package hw4_smale_project.repository;
 
+import hw4_smale_project.DTO.UserDTO;
 import hw4_smale_project.config.DBConfig;
 import hw4_smale_project.model.User;
 import hw4_smale_project.repository.repositoryAbstract.UserDAO;
@@ -8,19 +9,33 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAOImpl implements UserDAO {
 
+    private final UserDTO userDTO;
+
+    public UserDAOImpl(UserDTO userDTO) {
+        this.userDTO = userDTO;
+    }
+
+    public UserDAOImpl() {
+        this.userDTO = new UserDTO();
+    }
+
     @Override
-    public List<User> getAllUser() throws SQLException {
-        Session session = DBConfig.getSessionFactory().openSession();
+    public List<UserDTO> getAllUser() throws SQLException {
         Transaction transaction = null;
+        List<UserDTO> userDTOS = new ArrayList<>();
+        Session session = DBConfig.getSessionFactory().openSession();
         transaction = session.beginTransaction();
-        List<User> users = session.createQuery("from User", User.class).getResultList();
+        String hql = "SELECT new hw4_smale_project.DTO.UserDTO(u.id,u.name,u.surname,u.email,u.phone,u.age)from User as u";
+        List<UserDTO> users = session.createQuery(hql, UserDTO.class).getResultList();
+        userDTOS.addAll(users);
         transaction.commit();
         session.close();
-        return users;
+        return userDTOS;
     }
 
     @Override

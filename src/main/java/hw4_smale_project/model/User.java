@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Setter
 @Getter
 @NoArgsConstructor
@@ -28,16 +26,16 @@ public class User extends GenericModel {
 
     private int phone;
     @Column(name = "age")
-    private int age;
+    private Integer age;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", email='" + email + '\'' +
-                ", phone=" + phone +
-                ", age=" + age +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "User{" +
+//                "name='" + name + '\'' +
+//                ", surname='" + surname + '\'' +
+//                ", email='" + email + '\'' +
+//                ", phone=" + phone +
+//                ", age=" + age +
+//                '}';
+//    }
 }

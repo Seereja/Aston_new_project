@@ -1,6 +1,6 @@
 package hw4_smale_project.repository.repositoryAbstract;
 
-import hw4_smale_project.model.Section;
+import hw4_smale_project.DTO.TeacherDTO;
 import hw4_smale_project.model.Teacher;
 import hw4_smale_project.model.User;
 
@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface TeacherDAO {
-    public List<Teacher> getAllTeacher() throws SQLException;
+    public List<TeacherDTO> getAllTeacher() throws SQLException;
 
     void saveTeacher(Teacher teacher);
 

@@ -1,5 +1,6 @@
 package hw4_smale_project.service;
 
+import hw4_smale_project.DTO.TeacherDTO;
 import hw4_smale_project.model.Teacher;
 import hw4_smale_project.model.User;
 import hw4_smale_project.repository.TeacherDAOImpl;
@@ -26,8 +27,8 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     @Transactional
-    public List<Teacher> getAllTeacher() throws SQLException {
-        List<Teacher> teachers = teacherDAOImpl.getAllTeacher();
+    public List<TeacherDTO> getAllTeacher() throws SQLException {
+        List<TeacherDTO> teachers = teacherDAOImpl.getAllTeacher();
         teachers.stream().forEach(System.out::println);
         return teachers;
     }
@@ -39,7 +40,7 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public void saveUserAndTeacherAndSection(User user,Teacher teacher) {
+    public void saveUserAndTeacherAndSection(User user, Teacher teacher) {
         teacherDAOImpl.saveUserAndTeacherAndSection(user, teacher);
     }
 
