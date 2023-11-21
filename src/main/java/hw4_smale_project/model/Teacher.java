@@ -1,7 +1,15 @@
 package hw4_smale_project.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "teachers")
 public class Teacher extends User {
@@ -11,23 +19,11 @@ public class Teacher extends User {
     @JoinColumn(name = "section_id")
     private Section section;
 
-
-
-    public Teacher() {
-
-    }
-
-    public Teacher(String category, Section section) {
-        this.category = category;
-        this.section = section;
-    }
-
     @Override
     public String toString() {
         return "Teacher{" +
                 "category=" + category +
                 ", section=" + section +
-//                ", user=" + user +
                 '}';
     }
 }

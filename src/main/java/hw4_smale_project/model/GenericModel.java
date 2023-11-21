@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 public abstract class GenericModel {
     @Id
     @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     public Long getId() {

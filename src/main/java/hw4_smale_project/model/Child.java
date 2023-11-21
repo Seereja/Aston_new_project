@@ -1,11 +1,19 @@
 package hw4_smale_project.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "children")
 public class Child extends User {
@@ -20,32 +28,6 @@ public class Child extends User {
             inverseForeignKey = @ForeignKey(name = "FK_SECTIONS_CHILDREN"))
     private Set<Section> sections;
 
-
-    public Child() {
-
-    }
-
-    public Child(String name, String surname, String email, int phone, int age, String categoryInSports, Set<Section> sections, User user) {
-        this.categoryInSports = categoryInSports;
-        this.sections = sections;
-    }
-
-    public Child(String categoryInSports, User user) {
-        this.categoryInSports = categoryInSports;
-    }
-
-    public Child(String categoryInSports, Set<Section> sections, User user) {
-        this.categoryInSports = categoryInSports;
-        this.sections = sections;
-    }
-
-    public String getCategoryInSports() {
-        return categoryInSports;
-    }
-
-    public void setCategoryInSports(String categoryInSports) {
-        this.categoryInSports = categoryInSports;
-    }
 
     @Override
     public String toString() {

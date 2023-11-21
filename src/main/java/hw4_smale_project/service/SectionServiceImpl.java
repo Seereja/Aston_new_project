@@ -3,11 +3,13 @@ package hw4_smale_project.service;
 import hw4_smale_project.model.Child;
 import hw4_smale_project.model.Section;
 import hw4_smale_project.repository.SectionDAOImp;
+import hw4_smale_project.service.serviceAbstract.SectionService;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.List;
+
 @Service
 
 public class SectionServiceImpl implements SectionService {
@@ -31,9 +33,10 @@ public class SectionServiceImpl implements SectionService {
 
     @Override
     @Transactional
-
     public List<Section> getAllSection() throws SQLException {
-        return sectionDAOImp.getAllSection();
+        List<Section> sections = sectionDAOImp.getAllSection();
+        sections.stream().map(Section::getName).forEach(System.out::println);
+        return sections;
     }
 
     @Override
@@ -45,7 +48,6 @@ public class SectionServiceImpl implements SectionService {
 
     @Override
     @Transactional
-
     public Section getSectionById(int id) {
         return sectionDAOImp.getSectionById(id);
     }

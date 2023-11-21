@@ -3,11 +3,13 @@ package hw4_smale_project.service;
 import hw4_smale_project.model.Teacher;
 import hw4_smale_project.model.User;
 import hw4_smale_project.repository.TeacherDAOImpl;
+import hw4_smale_project.service.serviceAbstract.TeacherService;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.List;
+
 @Service
 
 public class TeacherServiceImpl implements TeacherService {
@@ -34,6 +36,11 @@ public class TeacherServiceImpl implements TeacherService {
     @Transactional
     public void saveTeacher(Teacher teacher) {
         teacherDAOImpl.saveTeacher(teacher);
+    }
+
+    @Override
+    public void saveUserAndTeacherAndSection(User user,Teacher teacher) {
+        teacherDAOImpl.saveUserAndTeacherAndSection(user, teacher);
     }
 
     @Override

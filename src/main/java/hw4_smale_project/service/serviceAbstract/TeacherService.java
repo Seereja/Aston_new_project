@@ -1,5 +1,6 @@
-package hw4_smale_project.service;
+package hw4_smale_project.service.serviceAbstract;
 
+import hw4_smale_project.model.Section;
 import hw4_smale_project.model.Teacher;
 import hw4_smale_project.model.User;
 
@@ -10,6 +11,10 @@ public interface TeacherService {
     public List<Teacher> getAllTeacher() throws SQLException;
 
     void saveTeacher(Teacher teacher);
+
+//    void saveTeacherAndSection(User user, Section section);
+
+    void saveUserAndTeacherAndSection(User user, Teacher teacher);
 
     User getTeacher(int id);
 

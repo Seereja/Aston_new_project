@@ -1,4 +1,4 @@
-package hw4_smale_project.repository;
+package hw4_smale_project.repository.repositoryAbstract;
 
 import hw4_smale_project.model.Child;
 import hw4_smale_project.model.User;

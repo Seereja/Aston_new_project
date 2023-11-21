@@ -1,4 +1,4 @@
-package hw4_smale_project.service;
+package hw4_smale_project.service.serviceAbstract;
 
 import hw4_smale_project.DTO.ChildSectionDTO;
 import hw4_smale_project.model.Child;
