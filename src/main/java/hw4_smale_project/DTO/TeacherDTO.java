@@ -14,6 +14,7 @@ public class TeacherDTO {
     private String name;
     private String surname;
     private String category;
+    private Integer age;
 
     @Override
     public String toString() {
@@ -22,6 +23,7 @@ public class TeacherDTO {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", category='" + category + '\'' +
+                ", age=" + age +
                 '}';
     }
 }

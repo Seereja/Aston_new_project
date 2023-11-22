@@ -27,7 +27,10 @@ public class Test2 {
 //            throw new RuntimeException(e);
 //        }
 
-            System.out.println(childService.getChildById(4));
+
+//            childService.getChildrenBySectionId(3);
+//            System.out.println(childService.getChildById(4));
+//            System.out.println(teacherService.getTeacherById(10));
 //            System.out.println(teacherService.getTeacherById(10));
 //            System.out.println(userService.getUserById(4));
 
@@ -55,6 +58,7 @@ public class Test2 {
 //            teacher.setCategory("junior");
 //            teacherService.saveTeacher(teacher);
 //            teacher.setSection(sectionService.getSectionById(2));
+            System.out.println(sectionService.findSectionByTeacherId(10));
 
         }
     }

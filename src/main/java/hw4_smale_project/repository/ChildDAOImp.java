@@ -41,7 +41,6 @@ public class ChildDAOImp implements ChildDAO {
             List<Child> list = session.createQuery(hql, Child.class).getResultList();
             children.addAll(list);
             transaction.commit();
-            session.close();
         }
         return children.stream().map(ChildModelMapper.INSTANCE::toDTO).collect(Collectors.toList());
     }

@@ -13,8 +13,15 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SectionDTO {
-    private Long id;
+
+    private Integer id;
     private String sectionName;
-    private List<ChildDTO> children;
-    private List<TeacherDTO> teachers;
+
+    @Override
+    public String toString() {
+        return "SectionDTO{" +
+                "id=" + id +
+                ", sectionName='" + sectionName + '\'' +
+                '}';
+    }
 }
