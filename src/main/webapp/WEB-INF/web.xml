@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+
+    <servlet>
+        <servlet-name>ChildServlet</servlet-name>
+        <servlet-class>hw4_smale_project.servletManyToMany.ChildServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ChildServlet</servlet-name>
+        <url-pattern>/child</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SectionController</servlet-name>
+        <servlet-class>hw3_smale_project.servletOneToMany.SectionController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>SectionController</servlet-name>
+        <url-pattern>/section</url-pattern>
+    </servlet-mapping>
+
+</web-app>
