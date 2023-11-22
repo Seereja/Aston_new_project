@@ -1,7 +1,6 @@
 package hw4_smale_project.service.serviceAbstract;
 
 import hw4_smale_project.DTO.ChildDTO;
-import hw4_smale_project.DTO.ChildSectionDTO;
 import hw4_smale_project.model.Child;
 
 import java.sql.SQLException;
@@ -12,11 +11,11 @@ public interface ChildService {
 
     void saveChildren(Child child);
 
-    Child getChildren(int id);
+    ChildDTO getChildById(int id);
 
     void deleteChildren(int id);
 
     public List<Child> getAllChildrenAndSection();
 
-    List<ChildSectionDTO> getChildrenBySectionId(int id) throws ClassNotFoundException;
+    List<ChildDTO> getChildrenBySectionId(int id) throws ClassNotFoundException;
 }

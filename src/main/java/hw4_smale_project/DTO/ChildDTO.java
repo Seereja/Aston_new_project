@@ -17,7 +17,7 @@ public class ChildDTO {
     private String name;
     private String surname;
     private String categoryInSports;
-
+    private int age;
 
     @Override
     public String toString() {
@@ -26,6 +26,7 @@ public class ChildDTO {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", categoryInSports='" + categoryInSports + '\'' +
+                ", age=" + age +
                 '}';
     }
 }

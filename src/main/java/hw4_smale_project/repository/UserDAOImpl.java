@@ -2,8 +2,11 @@ package hw4_smale_project.repository;
 
 import hw4_smale_project.DTO.UserDTO;
 import hw4_smale_project.config.DBConfig;
+import hw4_smale_project.model.Child;
+import hw4_smale_project.model.Teacher;
 import hw4_smale_project.model.User;
 import hw4_smale_project.repository.repositoryAbstract.UserDAO;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -50,13 +53,20 @@ public class UserDAOImpl implements UserDAO {
 
 
     @Override
-    public User getUser(int id) {
-        Session session = DBConfig.getSessionFactory().openSession();
+    public User getUserById(int id) {
         Transaction transaction = null;
-        transaction = session.beginTransaction();
-        User user = session.get(User.class, id);
-        transaction.commit();
-        session.close();
+        User user = null;
+        try (Session session = DBConfig.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            user = session.get(User.class, id);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+
         return user;
     }
 

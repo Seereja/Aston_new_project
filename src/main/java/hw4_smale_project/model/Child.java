@@ -25,4 +25,11 @@ public class Child extends User {
             inverseForeignKey = @ForeignKey(name = "FK_SECTIONS_CHILDREN"))
     private Set<Section> sections;
 
+    @Override
+    public String toString() {
+        return "Child{" +
+                "categoryInSports='" + categoryInSports + '\'' +
+                ", sections=" + sections +
+                '}';
+    }
 }

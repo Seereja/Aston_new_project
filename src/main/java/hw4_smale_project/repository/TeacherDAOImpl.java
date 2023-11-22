@@ -2,9 +2,10 @@ package hw4_smale_project.repository;
 
 import hw4_smale_project.DTO.TeacherDTO;
 import hw4_smale_project.config.DBConfig;
+import hw4_smale_project.mapperInterface.TeacherModelMapper;
 import hw4_smale_project.model.Teacher;
-import hw4_smale_project.model.User;
 import hw4_smale_project.repository.repositoryAbstract.TeacherDAO;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -12,6 +13,7 @@ import org.hibernate.query.Query;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class TeacherDAOImpl implements TeacherDAO {
@@ -29,18 +31,18 @@ public class TeacherDAOImpl implements TeacherDAO {
     @Override
     public List<TeacherDTO> getAllTeacher() throws SQLException {
         Transaction transaction = null;
-        List<TeacherDTO> teacherDTOS = new ArrayList<>();
+        List<Teacher> teachers = new ArrayList<>();
         try (Session session = DBConfig.getSessionFactory().openSession();) {
             transaction = session.beginTransaction();
-            String hql = "SELECT new hw4_smale_project.DTO.TeacherDTO(t.id,t.name,t.surname,t.category) FROM Teacher AS t";
-            List<TeacherDTO> teachers = session.createQuery(hql, TeacherDTO.class).getResultList();
-            teacherDTOS.addAll(teachers);
+            String hql = "FROM Teacher";
+            List<Teacher> list = session.createQuery(hql, Teacher.class).getResultList();
+            teachers.addAll(list);
             transaction.commit();
             session.close();
-            return teacherDTOS;
         }
-
+        return teachers.stream().map(TeacherModelMapper.INSTANCE::toDTO).collect(Collectors.toList());
     }
+
 
     @Override
     public void saveTeacher(Teacher teacher) {
@@ -52,33 +54,26 @@ public class TeacherDAOImpl implements TeacherDAO {
         session.close();
     }
 
-    @Override
-    public void saveUserAndTeacherAndSection(User user, Teacher teacher) {
-        Session session = DBConfig.getSessionFactory().openSession();
-        Transaction transaction = null;
-        transaction = session.beginTransaction();
-        session.persist(user);
-        session.persist(teacher);
-        transaction.commit();
-        session.close();
-    }
-
-//    @Override
-//    public void saveTeacherAndSection(User user, Section section) {
-//        Session session = DBConfig.getSessionFactory().openSession();
-//        session.persist(user);
-//        session.persist(section);
-//    }
 
     @Override
-    public User getTeacher(int id) {
-        Session session = DBConfig.getSessionFactory().openSession();
+    public TeacherDTO getTeacherById(int id) {
         Transaction transaction = null;
-        transaction = session.beginTransaction();
-        Teacher teacher = session.get(Teacher.class, id);
-        transaction.commit();
-        session.close();
-        return teacher;
+        Teacher teacher = null;
+        try (Session session = DBConfig.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            teacher = session.get(Teacher.class, id);
+            if (teacher != null) {
+                Hibernate.initialize(teacher.getSection()); // этот код инициализирует свойство 'sections'
+            }
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+
+        return TeacherModelMapper.INSTANCE.toDTO(teacher);
     }
 
     @Override

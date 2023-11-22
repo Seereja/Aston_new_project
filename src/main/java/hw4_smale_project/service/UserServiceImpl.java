@@ -1,6 +1,7 @@
 package hw4_smale_project.service;
 
 import hw4_smale_project.DTO.UserDTO;
+import hw4_smale_project.model.Teacher;
 import hw4_smale_project.model.User;
 import hw4_smale_project.repository.UserDAOImpl;
 import hw4_smale_project.service.serviceAbstract.UserService;
@@ -26,9 +27,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDTO> getAllUser() throws SQLException {
         List<UserDTO> users = userDAOImpl.getAllUser();
-        users.stream().forEach(System.out::println);
+        users.forEach(System.out::println);
         return users;
     }
+
 
     @Override
     public void saveUser(User user) {
@@ -36,8 +38,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUser(int id) {
-        return userDAOImpl.getUser(id);
+    public User getUserById(int id) {
+        return userDAOImpl.getUserById(id);
     }
 
     @Override

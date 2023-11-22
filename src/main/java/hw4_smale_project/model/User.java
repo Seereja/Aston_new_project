@@ -28,14 +28,15 @@ public class User extends GenericModel {
     @Column(name = "age")
     private Integer age;
 
-//    @Override
-//    public String toString() {
-//        return "User{" +
-//                "name='" + name + '\'' +
-//                ", surname='" + surname + '\'' +
-//                ", email='" + email + '\'' +
-//                ", phone=" + phone +
-//                ", age=" + age +
-//                '}';
-//    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", phone=" + phone +
+                ", age=" + age +
+                '}';
+    }
 }

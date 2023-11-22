@@ -1,6 +1,7 @@
 package hw4_smale_project.service.serviceAbstract;
 
 import hw4_smale_project.DTO.UserDTO;
+import hw4_smale_project.model.Teacher;
 import hw4_smale_project.model.User;
 
 import java.sql.SQLException;
@@ -11,7 +12,7 @@ public interface UserService {
 
     void saveUser(User user);
 
-    User getUser(int id);
+    User getUserById(int id);
 
     void deleteUserById(int id);
 }

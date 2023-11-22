@@ -2,7 +2,6 @@ package hw4_smale_project.repository.repositoryAbstract;
 
 
 import hw4_smale_project.DTO.ChildDTO;
-import hw4_smale_project.DTO.ChildSectionDTO;
 import hw4_smale_project.model.Child;
 import hw4_smale_project.model.User;
 
@@ -15,11 +14,10 @@ public interface ChildDAO {
 
     void saveChildren(User user);
 
-    Child getChildren(int id);
+    ChildDTO getChildById(int id);
 
     void deleteChildren(int id);
 
-    List<ChildSectionDTO> getChildrenBySectionId(int id) throws ClassNotFoundException;
+    List<ChildDTO> getChildrenBySectionId(int id) throws ClassNotFoundException;
 
-    public void addChildrenToSection(Child child);
 }
